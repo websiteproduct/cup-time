@@ -42,6 +42,19 @@ img {
   height: auto;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -224,6 +237,193 @@ img {
   gap: 12px;
 }
 
+.cart {
+  padding: 215px 0 50px;
+}
+
+.cart__container {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px 20px;
+}
+
+.cart__title {
+  font-weight: 400;
+  font-size: 54px;
+  line-height: 1.1;
+  color: #64099b;
+  grid-column: 1 / -1;
+  margin: 0 0 32px;
+}
+
+.cart__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.cart-item {
+  font-size: 0;
+  background-color: #f2f9f7;
+  border-radius: 6px;
+}
+
+.cart-item__image {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+}
+
+.cart-item__info {
+  padding: 16px;
+}
+
+.cart-item__title {
+  font-weight: 400;
+  font-size: 20px;
+  color: #1d1c1d;
+  margin: 0 0 8px;
+}
+
+.cart-item__quantity {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cart-item__quantity-button {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #b8b8b8;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.cart-item__quantity-button_minus {
+  background-image: url("/image/minus.svg");
+}
+
+.cart-item__quantity-button_plus {
+  background-image: url("/image/plus.svg");
+}
+
+.cart-item__quantity-input {
+  width: 26px;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+.cart-item__price {
+  font-size: 20px;
+  margin: 0;
+}
+
+.cart__summary {
+  display: grid;
+  grid-template-areas:
+    "title button"
+    "total button";
+  background-color: #f2f9f7;
+  border-radius: 6px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  gap: 8px;
+}
+
+.cart__summary-title {
+  font-weight: 400;
+  grid-area: title;
+  font-size: 20px;
+  margin: 0;
+}
+
+.cart__total {
+  grid-area: total;
+  font-size: 20px;
+  margin: 0;
+}
+
+.cart__order-button {
+  grid-area: button;
+  color: #64099b;
+  padding: 16px 24px;
+  border: 1px solid #64099b;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.order {
+  padding: 50px 0 100px;
+}
+
+.order__title {
+  font-weight: 400;
+  font-size: 54px;
+  line-height: 1.1;
+  color: #64099b;
+  margin: 0 0 32px;
+}
+
+.order__form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 640px;
+}
+
+.order__input {
+  border-radius: 4px;
+  padding: 16px;
+  background-color: #f2f9f7;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.24;
+  border: 0;
+}
+
+.order-input::placeholder {
+  color: #b8b8b8;
+}
+
+.order__input_address {
+  grid-column: 1 / -1;
+}
+
+.order__payment {
+  margin: 0;
+  padding: 12px 0 0;
+  border: none;
+}
+
+.order__payment-title {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+
+.order__payment-label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.order__payment-label:last-child {
+  margin-bottom: 0;
+}
+
+.order__radio {
+  margin-right: 8px;
+}
+
 @media (max-width: 1240px) {
   .container {
     padding: 0 42px;
@@ -253,6 +453,30 @@ img {
 
   .product {
     min-height: 450px;
+  }
+
+  .cart {
+    padding: 170px 0 50px;
+  }
+
+  .cart__container {
+    gap: 20px;
+  }
+
+  .cart-item__image {
+    width: 100%;
+  }
+
+  .cart-item__info {
+    padding: 16px;
+  }
+
+  .cart-item__title {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 
   .footer__menu {
@@ -316,6 +540,84 @@ img {
     font-size: 16px;
   }
 
+  .cart {
+    padding: 140px 0 50px;
+  }
+
+  .cart__container {
+    gap: 40px 20px;
+  }
+
+  .cart__title {
+    margin-bottom: 4px;
+    font-size: 36px;
+  }
+
+  .cart__items {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+  }
+
+  .cart-item {
+    max-height: 280px;
+  }
+
+  .cart-item__image {
+    max-height: 150px;
+    object-fit: cover;
+  }
+
+  .cart-item__title {
+    font-size: 16px;
+    -webkit-line-clamp: 1;
+  }
+
+  .cart-item__quantity-button {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart-item__price {
+    font-size: 16px;
+  }
+
+  .cart__summary {
+    grid-column: 1 / -1;
+    order: -1;
+    display: flex;
+    grid-template-areas: unset;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px;
+  }
+
+  .cart__summary-title {
+    font-size: 16px;
+  }
+
+  .cart__total {
+    font-size: 16px;
+  }
+
+  .cart__order-button {
+    font-size: 16px;
+    padding: 12px 16px;
+    margin-left: auto;
+  }
+
+  .order {
+    padding: 10px 0 80px;
+  }
+
+  .order__title {
+    font-size: 36px;
+  }
+
+  .order__form {
+    max-width: unset;
+  }
+
   .footer {
     padding: 40px 0;
   }
@@ -342,7 +644,12 @@ img {
 
   .header {
     padding: 0;
-    top: 8px;
+    top: 0;
+  }
+
+  .header__container {
+    padding: 8px 16px;
+    gap: 16px;
   }
 
   .header__nav {
@@ -382,6 +689,48 @@ img {
 
   .product__title {
     font-size: 16px;
+  }
+
+  .cart {
+    padding: 100px 0 60px;
+  }
+
+  .cart__container {
+    gap: 24px;
+  }
+
+  .cart__title {
+    margin-bottom: 0;
+  }
+
+  .cart__items {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+  }
+
+  .cart-item__image {
+    max-height: 145px;
+  }
+
+  .cart__summary {
+    margin-bottom: 6px;
+    display: grid;
+    grid-template-areas:
+      "title button"
+      "total button";
+    justify-content: space-between;
+  }
+
+  .order {
+    padding: 0 0 60px;
+  }
+
+  .order__form {
+    grid-template-columns: 1fr;
+  }
+
+  .order__payment {
+    padding: 4px 0 0;
   }
 
   .footer__container {
