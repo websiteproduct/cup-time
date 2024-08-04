@@ -1,42 +1,29 @@
+import { Link } from "react-router-dom";
+import { useProducts } from "../context/ProductContext";
+
 export const Footer = () => {
+  const {categories} = useProducts();
+
   return (
     <footer className="footer">
       <div className="container footer__container">
-        <a className="footer__logo-link">
+        <Link to="/" className="footer__logo-link">
           <img
             src="image/logo.svg"
             className="footer__logo"
             alt="Логотип Cup Time"
           />
-        </a>
+        </Link>
 
         <div className="footer__nav">
           <ul className="footer__menu">
-            <li className="footer__menu-item">
-              <a href="#" className="footer__menu-link">
-                Чай
-              </a>
+            {Object.entries(categories).map(([key, value]) => (
+              <li key={key} className="footer__menu-item">
+              <Link to={`/products?category=${key}`} className="footer__menu-link">
+                {value}
+              </Link>
             </li>
-            <li className="footer__menu-item">
-              <a href="#" className="footer__menu-link">
-                Кофе
-              </a>
-            </li>
-            <li className="footer__menu-item">
-              <a href="#" className="footer__menu-link">
-                Чайники
-              </a>
-            </li>
-            <li className="footer__menu-item">
-              <a href="#" className="footer__menu-link">
-                Турки
-              </a>
-            </li>
-            <li className="footer__menu-item">
-              <a href="#" className="footer__menu-link">
-                Прочее
-              </a>
-            </li>
+            ))}
           </ul>
         </div>
 
@@ -45,10 +32,16 @@ export const Footer = () => {
           <p className="footer__description">Проект сделан в учебных целях</p>
           <ul className="footer__developers">
             <li className="footer__developer">
-              Designer: <a href="#" className="footer__developer-link">Anastasia Ilina</a>
+              Designer:{" "}
+              <a href="#" className="footer__developer-link">
+                Anastasia Ilina
+              </a>
             </li>
             <li className="footer__developer">
-              Developer: <a href="#" className="footer__developer-link">Kirill K.</a>
+              Developer:{" "}
+              <a href="#" className="footer__developer-link">
+                Kirill K.
+              </a>
             </li>
           </ul>
         </div>
