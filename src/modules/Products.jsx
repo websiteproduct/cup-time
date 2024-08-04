@@ -6,28 +6,10 @@ import { SkeletonLoader } from "./SkeletonLoader";
 
 export const Products = () => {
   const [searchParams] = useSearchParams();
-  const { products, setCategory } = useProducts();
+  const { products, setCategory, categories } = useProducts();
   const category = searchParams.get("category");
 
-  let categoryName = "";
-
-  switch (category) {
-    case "tea":
-      categoryName = "Чай";
-      break;
-    case "coffee":
-      categoryName = "Кофе";
-      break;
-    case "teapots":
-      categoryName = "Чайники";
-      break;
-    case "cezves":
-      categoryName = "Турки";
-      break;
-    case "other":
-      categoryName = "Прочее";
-      break;
-  }
+  const categoryTitle = categories[category];
 
   useEffect(() => {
     setCategory(category);
@@ -36,7 +18,7 @@ export const Products = () => {
   return (
     <section className="products">
       <div className="container">
-        <h2 className="products__title">{categoryName}</h2>
+        <h2 className="products__title">{categoryTitle || 'Товары'}</h2>
 
         <ul className="products__list">
           {products.length ? (

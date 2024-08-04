@@ -33,7 +33,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => {
       onRequestClose={onRequestClose}
       contentLabel="Product Modal"
       overlayClassName="modal__overlay"
-      className="modal"
+      className="modal modal-product"
     >
       <img
         src={`${API_URL}${data.img}`}

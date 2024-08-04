@@ -23,6 +23,7 @@ body {
   color: #1d1c1d;
   line-height: 1.24;
   font-weight: 400;
+  min-width: 320px;
 }
 
 ul {
@@ -78,6 +79,7 @@ input[type="number"] {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-radius: 6px;
 }
 
 .hader__logo-link {
@@ -103,6 +105,17 @@ input[type="number"] {
   text-align: center;
 }
 
+.header__control {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header__close-btn,
+.header__burger {
+  display: none;
+}
+
 .header__menu-link.active {
   color: #64099b;
 }
@@ -114,6 +127,7 @@ input[type="number"] {
 
 .promo__container {
   padding-top: 210px;
+  min-height: 600px;
   background-image: url("/image/bg-image.png");
   padding-bottom: 80px;
   background-position: right 113px bottom 0;
@@ -158,10 +172,11 @@ input[type="number"] {
   font-size: 0;
   display: flex;
   flex-direction: column;
-  min-height: 600px;
   height: 100%;
   background-color: #f2f9f7;
   color: #1d1c1d;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .product__image {
@@ -173,12 +188,13 @@ input[type="number"] {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .product__title {
   flex-grow: 1;
   font-size: 24px;
-  margin-bottom: 4px;
+  margin-bottom: 0;
   margin-top: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -187,6 +203,7 @@ input[type="number"] {
   line-clamp: 2;
   -webkit-box-orient: vertical;
   font-weight: 400;
+  height: 62px;
 }
 
 .product__price {
@@ -438,24 +455,33 @@ input[type="number"] {
 
 .modal__overlay {
   position: fixed;
-  inset: 0px;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.75);
+  overflow-y: auto;
 }
 
 .modal {
   position: absolute;
-  inset: 50% auto auto 50%;
+  inset: 50% 0 0 50%;
   border: none;
   border-radius: 6px;
   outline: none;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  width: 744px;
   height: auto;
-  display: grid;
-  background-color: #f2f9f7;
-  grid-template-columns: 1fr 1fr;
   position: relative;
+  max-width: 744px;
+  background-color: #f2f9f7;
+}
+
+.modal.modal-product {
+  width: 744px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.modal.modal-cart {
+  padding: 24px;
 }
 
 .modal__image {
@@ -475,6 +501,11 @@ input[type="number"] {
   font-weight: 400;
   font-size: 24px;
   margin: 0 0 12px;
+}
+
+.modal-cart__title {
+  font-size: 32px;
+  margin: 0 0 24px;
 }
 
 .modal__price {
@@ -589,6 +620,7 @@ input[type="number"] {
   }
 
   .promo__container {
+    min-height: 484px;
     padding-top: 172px;
     background-image: url("/image/bg-image-1024.png");
     padding-bottom: 60px;
@@ -697,7 +729,7 @@ input[type="number"] {
 
   .product__title {
     font-size: 20px;
-    margin-bottom: 24px;
+    height: 48px;
   }
 
   .product__price {
@@ -803,7 +835,7 @@ input[type="number"] {
     margin-bottom: 12px;
   }
 
-  .modal {
+  .modal.modal-product {
     max-width: 524px;
     grid-template-columns: 224px 300px;
   }
@@ -864,10 +896,48 @@ input[type="number"] {
   .header__container {
     padding: 8px 16px;
     gap: 16px;
+    border-radius: 0;
   }
 
   .header__nav {
     display: none;
+  }
+
+  .header__burger {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .header__nav.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    overflow: hidden;
+    inset: 0;
+    height: 100vh;
+    background-color: #6cb9ab;
+  }
+
+  .header__menu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__close-btn {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    display: block;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
   }
 
   .promo__container {
@@ -876,6 +946,7 @@ input[type="number"] {
     background-size: 145px;
     padding-top: 89px;
     padding-bottom: 249px;
+    min-height: 420px;;
   }
 
   .promo__title {
@@ -899,10 +970,12 @@ input[type="number"] {
 
   .product__content {
     padding: 32px 8px 16px;
+    gap: 24px;
   }
 
   .product__title {
     font-size: 16px;
+    height: 40px;
   }
 
   .cart {
@@ -975,7 +1048,7 @@ input[type="number"] {
     gap: 10px;
   }
 
-  .modal {
+  .modal.modal-product {
     max-width: 290px;
     grid-template-columns: 1fr;
   }
@@ -995,7 +1068,7 @@ input[type="number"] {
   .modal__list {
     margin-bottom: 17px;
   }
-  
+
   .modal__close {
     top: 18px;
     right: 18px;
