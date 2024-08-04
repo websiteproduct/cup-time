@@ -1,29 +1,36 @@
 import Modal from "react-modal";
 import { API_URL } from "../const";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+import { useState } from "react";
+import { useCart } from "../context/CartContext";
 
 Modal.setAppElement("#root");
 
 export const ProductModal = ({ isOpen, onRequestClose, data }) => {
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
+
   if (!data) {
     return null;
   }
+
+  const handleDecrease = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+  const handleIncrease = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleAddToCart = () => {
+    addToCart(data, quantity);
+    onRequestClose();
+  };
 
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      style={customStyles}
       contentLabel="Product Modal"
       overlayClassName="modal__overlay"
       className="modal"
@@ -45,15 +52,24 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => {
         </ul>
         <div className="modal__cart">
           <div className="modal__quantity">
-            <button className="modal-item__quantity-button modal-item__quantity-button_minus"></button>
+            <button
+              className="modal-item__quantity-button modal-item__quantity-button_minus"
+              onClick={handleDecrease}
+            ></button>
             <input
               type="number"
               className="modal-item__quantity-input"
-              value={1}
+              value={quantity}
+              readOnly
             />
-            <button className="modal-item__quantity-button modal-item__quantity-button_plus"></button>
+            <button
+              className="modal-item__quantity-button modal-item__quantity-button_plus"
+              onClick={handleIncrease}
+            ></button>
           </div>
-          <button className="modal__cart-btn">Добавить</button>
+          <button className="modal__cart-btn" onClick={handleAddToCart}>
+            Добавить
+          </button>
         </div>
       </div>
 
